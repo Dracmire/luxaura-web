@@ -33,17 +33,26 @@
       background: #000;
     }
 
-    .video-container video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 80%;
-  width: auto;
-  object-fit: cover;
-  min-width: 80%;
-  min-height: 80%;
+.video-wrapper {
+  width: 100%;          /* fill the embed width */
+  height: 100%;         /* container height follows embed size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: black;    /* optional, hides empty space */
+  overflow: hidden;
 }
+
+/* VIDEO ALWAYS FULLY VISIBLE */
+.video-wrapper video {
+  width: 100%;          /* width determines the scaling */
+  height: auto;         /* maintain full aspect ratio */
+  max-height: 100%;     /* prevent vertical overflow */
+  object-fit: contain;  /* NEVER crop, show entire video */
+}
+
+    
+    
 
 
 
@@ -139,6 +148,7 @@
 
 </body>
 </html>
+
 
 
 
