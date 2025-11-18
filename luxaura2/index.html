@@ -25,13 +25,17 @@
       height: 100vh;
     }
 
-    .video-container {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-      z-index: 0;
-      background: #000;
-    }
+    .video-container video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 200%;
+  width: auto;
+  object-fit: cover;
+  min-width: 100%;
+  min-height: 100%;
+}
 
     .video-container video {
       width: 100%;
@@ -126,8 +130,9 @@
   <!-- ⭐ Slow-motion playback speed controller -->
   <script>
     const video = document.getElementById("bgVideo");
-    video.playbackRate = 0.75;  // Change to 0.3, 0.5, 0.75 etc.
+    video.playbackRate = 0.65;  // Change to 0.3, 0.5, 0.75 etc.
   </script>
 
 </body>
 </html>
+
