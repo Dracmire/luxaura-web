@@ -35,22 +35,38 @@
 
 
 
-.video-wrapper {
-  width: 100%;          /* fill the embed width */
-  height: 100%;         /* container height follows embed size */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: black;    /* optional, hides empty space */
+.video-bg {
+  position: relative;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 }
 
-/* VIDEO ALWAYS FULLY VISIBLE */
-.video-wrapper video {
-  width: 100%;          /* width determines the scaling */
-  height: auto;         /* maintain full aspect ratio */
-  max-height: 100%;     /* prevent vertical overflow */
-  object-fit: contain;  /* NEVER crop, show entire video */
+/* Layer 1: blurred fill so NO BLACK BARS ever appear */
+.video-fill {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 120%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  filter: blur(25px) brightness(0.7);
+  z-index: 1;
+}
+
+/* Layer 2: perfectly intact video (NO CROPPING EVER) */
+.video-main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;    /* video scales by width */
+  height: auto;   /* preserve full aspect ratio */
+  object-fit: contain;  /* full video always visible */
+  z-index: 2;
 }
 
     
@@ -117,6 +133,19 @@
   </style>
 </head>
 <body>
+  <div class="video-bg">
+  
+  <!-- Blurred fill layer -->
+  <video class="video-fill" autoplay muted loop playsinline>
+    <source src="lux-aura.mp4" type="video/mp4">
+  </video>
+
+  <!-- Full-visible video (no crop) -->
+  <video class="video-main" autoplay muted loop playsinline>
+    <source src="lux-aura.mp4" type="video/mp4">
+  </video>
+
+</div>
   <div class="wrapper">
     
     <div class="video-container">
@@ -150,6 +179,7 @@
 
 </body>
 </html>
+
 
 
 
